@@ -59,6 +59,11 @@ static NSString *gAppId = nil;
     if ([appId length] == 0) {
         appId = kInMobiAppID;
     }
+    
+    if (self.inMobiInterstitial) {
+        self.inMobiInterstitial.delegate = nil;
+        self.inMobiInterstitial.incentivisedDelegate = nil;
+    }
 
     self.inMobiInterstitial = [[MPInstanceProvider sharedProvider] buildIMInterstitialWithDelegate:self appId:appId];
     NSMutableDictionary *paramsDict = [NSMutableDictionary dictionary];
@@ -80,7 +85,10 @@ static NSString *gAppId = nil;
 
 - (void)dealloc
 {
-    [self.inMobiInterstitial setDelegate:nil];
+    if (self.inMobiInterstitial) {
+        self.inMobiInterstitial.delegate = nil;
+        self.inMobiInterstitial.incentivisedDelegate = nil;
+    }
 }
 
 #pragma mark - IMAdInterstitialDelegate

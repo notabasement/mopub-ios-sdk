@@ -22,15 +22,31 @@ static const NSInteger FacebookNoFillErrorCode = 1001;
 
 @implementation FacebookNativeCustomEvent
 
+- (void)dealloc
+{
+    if (_fbNativeAd) {
+        [_fbNativeAd unregisterView];
+        _fbNativeAd.delegate = nil;
+    }
+}
+
 - (void)requestAdWithCustomEventInfo:(NSDictionary *)info
 {
     NSString *placementID = [info objectForKey:@"placement_id"];
 
     if (placementID) {
+        
+        if (_fbNativeAd) {
+            [_fbNativeAd unregisterView];
+            _fbNativeAd.delegate = nil;
+        }
+        
         _fbNativeAd = [[FBNativeAd alloc] initWithPlacementID:placementID];
         self.fbNativeAd.delegate = self;
         [self.fbNativeAd loadAd];
+        
     } else {
+        
         [self.delegate nativeCustomEvent:self didFailToLoadAdWithError:[NSError errorWithDomain:MoPubNativeAdsSDKDomain code:MPNativeAdErrorInvalidServerResponse userInfo:nil]];
     }
 }

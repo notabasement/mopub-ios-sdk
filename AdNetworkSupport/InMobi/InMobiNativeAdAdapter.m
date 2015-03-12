@@ -135,8 +135,10 @@ static NSString *const kInMobiImageURL = @"url";
 
 - (void)dealloc
 {
-    [_destinationDisplayAgent cancel];
-    [_destinationDisplayAgent setDelegate:nil];
+    if (_destinationDisplayAgent) {
+        [_destinationDisplayAgent cancel];
+        [_destinationDisplayAgent setDelegate:nil];
+    }
 }
 
 - (NSDictionary *)inMobiProperties
