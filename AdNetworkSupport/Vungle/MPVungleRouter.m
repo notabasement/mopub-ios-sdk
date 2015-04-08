@@ -84,7 +84,14 @@ NSString *const kMPVungleRewardedAdCompletedView = @"completedView";
     if (!self.isAdPlaying && self.isAdAvailable) {
         self.delegate = delegate;
         self.isAdPlaying = YES;
-        [[VungleSDK sharedSDK] playAd:viewController];
+        NSError *error = nil;
+        [[VungleSDK sharedSDK] playAd:viewController error:&error];
+        if (error) {
+            NSLog(@"ERROR: %@", [error localizedDescription]);
+            #ifdef DEBUG
+                abort();
+            #endif
+        }
     } else {
         [delegate vungleAdDidFailToPlay:nil];
     }
@@ -101,7 +108,14 @@ NSString *const kMPVungleRewardedAdCompletedView = @"completedView";
         } else {
             options = @{VunglePlayAdOptionKeyIncentivized : @(YES)};
         }
-        [[VungleSDK sharedSDK] playAd:viewController withOptions:options];
+        NSError *error = nil;
+        [[VungleSDK sharedSDK] playAd:viewController withOptions:options error:&error];
+        if (error) {
+            NSLog(@"ERROR: %@", [error localizedDescription]);
+            #ifdef DEBUG
+                abort();
+            #endif
+        }
     } else {
         NSError *error = [NSError errorWithDomain:MoPubRewardedVideoAdsSDKDomain code:MPRewardedVideoAdErrorNoAdsAvailable userInfo:nil];
         [delegate vungleAdDidFailToPlay:error];
