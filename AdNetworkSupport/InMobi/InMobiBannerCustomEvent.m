@@ -64,6 +64,11 @@ static NSString *gAppId = nil;
     if ([appId length] == 0) {
         appId = kInMobiAppID;
     }
+    
+    if (self.inMobiBanner) {
+        self.inMobiBanner.delegate = nil;
+        [self.inMobiBanner removeFromSuperview];
+    }
 
     self.inMobiBanner = [[MPInstanceProvider sharedProvider] buildIMBannerWithFrame:CGRectMake(0, 0, size.width, size.height) appId:appId adSize:imAdSizeConstant];
     self.inMobiBanner.delegate = self;
@@ -104,7 +109,10 @@ static NSString *gAppId = nil;
 
 - (void)dealloc
 {
-    [self.inMobiBanner setDelegate:nil];
+    if (self.inMobiBanner) {
+        self.inMobiBanner.delegate = nil;
+        [self.inMobiBanner removeFromSuperview];
+    }
 }
 
 #pragma mark - IMAdDelegate

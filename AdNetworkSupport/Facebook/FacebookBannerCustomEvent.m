@@ -77,6 +77,12 @@
     }
 
     MPLogInfo(@"Requesting Facebook banner ad");
+    
+    if (self.fbAdView) {
+        self.fbAdView.delegate = nil;
+        [self.fbAdView removeFromSuperview];
+    }
+    
     self.fbAdView =
         [[MPInstanceProvider sharedProvider] buildFBAdViewWithPlacementID:[info objectForKey:@"placement_id"]
                                                                      size:fbAdSize
@@ -102,7 +108,10 @@
 
 - (void)dealloc
 {
-    _fbAdView.delegate = nil;
+    if (self.fbAdView) {
+        self.fbAdView.delegate = nil;
+        [self.fbAdView removeFromSuperview];
+    }
 }
 
 #pragma mark FBAdViewDelegate methods

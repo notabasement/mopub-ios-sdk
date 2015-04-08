@@ -110,7 +110,10 @@
 
 - (void)rotateToOrientation:(UIInterfaceOrientation)orientation
 {
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     self.bannerView.currentContentSizeIdentifier = UIInterfaceOrientationIsPortrait(orientation) ? ADBannerContentSizeIdentifierPortrait : ADBannerContentSizeIdentifierLandscape;
+    #pragma GCC diagnostic pop
 }
 
 - (void)didDisplayAd

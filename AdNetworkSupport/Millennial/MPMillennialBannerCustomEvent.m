@@ -100,6 +100,11 @@
 {
     self.mmCompletionBlockProxy.event = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    if (self.mmAdView) {
+        self.mmAdView.rootViewController = nil;
+        [self.mmAdView removeFromSuperview];
+    }
 }
 
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
@@ -108,6 +113,12 @@
 
     CGRect frame = [self frameFromCustomEventInfo:info];
     NSString *apid = [info objectForKey:@"adUnitID"];
+    
+    if (self.mmAdView) {
+        self.mmAdView.rootViewController = nil;
+        [self.mmAdView removeFromSuperview];
+    }
+    
     self.mmAdView = [[MPInstanceProvider sharedProvider] buildMMAdViewWithFrame:frame
                                                                            apid:apid
                                                              rootViewController:self.delegate.viewControllerForPresentingModalView];

@@ -76,6 +76,13 @@
     return self;
 }
 
+- (void)dealloc
+{
+    if (_fbNativeAd) {
+        [_fbNativeAd unregisterView];
+        _fbNativeAd.delegate = nil;
+    }
+}
 
 #pragma mark - MPNativeAdAdapter
 

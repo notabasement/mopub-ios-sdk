@@ -47,6 +47,10 @@
     }
 
     MPLogInfo(@"Requesting Facebook interstitial ad");
+    
+    if (self.fbInterstitialAd) {
+        self.fbInterstitialAd.delegate = nil;
+    }
 
     self.fbInterstitialAd =
     [[MPInstanceProvider sharedProvider] buildFBInterstitialAdWithPlacementID:[info objectForKey:@"placement_id"]
@@ -70,7 +74,9 @@
 
 - (void)dealloc
 {
-    _fbInterstitialAd.delegate = nil;
+    if (self.fbInterstitialAd) {
+        self.fbInterstitialAd.delegate = nil;
+    }
 }
 
 #pragma mark FBInterstitialAdDelegate methods

@@ -47,7 +47,7 @@
     }
 #endif
 
-    [self presentModalViewController:modalViewController animated:animated];
+    [self presentViewController:modalViewController animated:animated completion:nil];
 }
 
 - (void)mp_dismissModalViewControllerAnimated:(BOOL)animated
@@ -59,7 +59,7 @@
     }
 #endif
 
-    [self dismissModalViewControllerAnimated:animated];
+    [self dismissViewControllerAnimated:animated completion:nil];
 }
 
 @end

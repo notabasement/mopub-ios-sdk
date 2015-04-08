@@ -31,7 +31,9 @@ static NSString *gAppId = nil;
 
 - (void)dealloc
 {
-    _inMobiAd.delegate = nil;
+    if (_inMobiAd) {
+        _inMobiAd.delegate = nil;
+    }
 }
 
 - (void)requestAdWithCustomEventInfo:(NSDictionary *)info
@@ -43,10 +45,17 @@ static NSString *gAppId = nil;
     }
 
     if ([appId length]) {
+        
+        if (_inMobiAd) {
+            _inMobiAd.delegate = nil;
+        }
+        
         _inMobiAd = [[IMNative alloc] initWithAppId:appId];
         self.inMobiAd.delegate = self;
         [self.inMobiAd loadAd];
+        
     } else {
+        
         [self.delegate nativeCustomEvent:self didFailToLoadAdWithError:[NSError errorWithDomain:MoPubNativeAdsSDKDomain code:MPNativeAdErrorInvalidServerResponse userInfo:nil]];
     }
 }
