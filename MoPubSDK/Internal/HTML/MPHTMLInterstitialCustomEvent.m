@@ -20,6 +20,7 @@
 @implementation MPHTMLInterstitialCustomEvent
 
 @synthesize interstitial = _interstitial;
+@dynamic delegate;
 
 - (BOOL)enableAutomaticImpressionAndClickTracking
 {

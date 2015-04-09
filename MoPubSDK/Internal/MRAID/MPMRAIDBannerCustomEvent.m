@@ -19,6 +19,8 @@
 
 @implementation MPMRAIDBannerCustomEvent
 
+@dynamic delegate;
+
 - (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info
 {
     MPLogInfo(@"Loading MoPub MRAID banner");
