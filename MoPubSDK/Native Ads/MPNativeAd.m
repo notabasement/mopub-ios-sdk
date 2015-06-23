@@ -227,14 +227,24 @@ static const CGFloat kMoPubImpressionTimerInterval = 0.25;
 
 - (void)loadIconIntoImageView:(UIImageView *)imageView
 {
+    [self loadIconIntoImageView:imageView onCompletion:nil];
+}
+
+- (void)loadIconIntoImageView:(UIImageView *)imageView onCompletion:(void (^)(NSError *error))completionBlock
+{
     NSURL *imageURL = [NSURL URLWithString:[self.properties objectForKey:kAdIconImageKey]];
-    [self loadImageForURL:imageURL intoImageView:imageView];
+    [self loadImageForURL:imageURL intoImageView:imageView onCompletion:completionBlock];
 }
 
 - (void)loadImageIntoImageView:(UIImageView *)imageView
 {
+    [self loadImageIntoImageView:imageView onCompletion:nil];
+}
+
+- (void)loadImageIntoImageView:(UIImageView *)imageView onCompletion:(void (^)(NSError *error))completionBlock
+{
     NSURL *imageURL = [NSURL URLWithString:[self.properties objectForKey:kAdMainImageKey]];
-    [self loadImageForURL:imageURL intoImageView:imageView];
+    [self loadImageForURL:imageURL intoImageView:imageView onCompletion:completionBlock];
 }
 
 - (void)loadTextIntoLabel:(UILabel *)label
@@ -259,9 +269,16 @@ static const CGFloat kMoPubImpressionTimerInterval = 0.25;
 
 - (void)loadImageForURL:(NSURL *)imageURL intoImageView:(UIImageView *)imageView
 {
-    imageView.image = nil;
-    [imageView mp_setNativeAd:self];
-    [self.managedImageViews addObject:imageView];
+    [self loadImageForURL:imageURL intoImageView:imageView onCompletion:nil];
+}
+
+- (void)loadImageForURL:(NSURL *)imageURL intoImageView:(UIImageView *)imageView onCompletion:(void (^)(NSError *error))completionBlock
+{
+    if (imageView) {
+        imageView.image = nil;
+        [imageView mp_setNativeAd:self];
+        [self.managedImageViews addObject:imageView];
+    }
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         __block BOOL imageViewWasRecycled = NO;
@@ -269,12 +286,19 @@ static const CGFloat kMoPubImpressionTimerInterval = 0.25;
         // Try to prevent unnecessary work if the imageview has already been recycled.
         // Note that this doesn't prevent 100% of the cases as the imageview can still be recycled after this passes.
         // We have an additional 100% accurate check in safeMainQueueSetImage to ensure that we don't overwrite.
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            imageViewWasRecycled = ![self isCurrentAdForImageView:imageView];
-        });
+        if (imageView) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                imageViewWasRecycled = ![self isCurrentAdForImageView:imageView];
+            });
+        }
 
         if (imageViewWasRecycled) {
             MPLogDebug(@"Cell was recycled. Don't bother rendering the image.");
+            if (completionBlock) {
+                completionBlock([NSError errorWithDomain:@"MoPub"
+                                                    code:1
+                                                userInfo:@{NSLocalizedDescriptionKey:@"Cell was recycled. Don't bother rendering the image."}]);
+            }
             return;
         }
 
@@ -282,14 +306,25 @@ static const CGFloat kMoPubImpressionTimerInterval = 0.25;
         UIImage *image = [UIImage imageWithData:cachedImageData];
 
         if (image) {
-            // By default, the image data isn't decompressed until set on a UIImageView, on the main thread. This
-            // can result in poor scrolling performance. To fix this, we force decompression in the background before
-            // assignment to a UIImageView.
-            UIGraphicsBeginImageContext(CGSizeMake(1, 1));
-            [image drawAtPoint:CGPointZero];
-            UIGraphicsEndImageContext();
-
-            [self safeMainQueueSetImage:image intoImageView:imageView];
+            
+            if (imageView) {
+                
+                // By default, the image data isn't decompressed until set on a UIImageView, on the main thread. This
+                // can result in poor scrolling performance. To fix this, we force decompression in the background before
+                // assignment to a UIImageView.
+                UIGraphicsBeginImageContext(CGSizeMake(1, 1));
+                [image drawAtPoint:CGPointZero];
+                UIGraphicsEndImageContext();
+                
+                [self safeMainQueueSetImage:image intoImageView:imageView onCompletion:completionBlock];
+                
+            } else {
+                
+                if (completionBlock) {
+                    completionBlock(nil);
+                }
+            }
+            
         } else if (imageURL) {
             MPLogDebug(@"Cache miss on %@. Re-downloading...", imageURL);
 
@@ -299,16 +334,41 @@ static const CGFloat kMoPubImpressionTimerInterval = 0.25;
                                               MPNativeAd *strongSelf = weakSelf;
                                               if (strongSelf) {
                                                   if (errors.count == 0) {
-                                                      UIImage *image = [UIImage imageWithData:[[MPNativeCache sharedCache] retrieveDataForKey:imageURL.absoluteString]];
-
-                                                      [strongSelf safeMainQueueSetImage:image intoImageView:imageView];
+                                                      
+                                                      if (imageView) {
+                                                          UIImage *image = [UIImage imageWithData:[[MPNativeCache sharedCache] retrieveDataForKey:imageURL.absoluteString]];
+                                                          
+                                                          [strongSelf safeMainQueueSetImage:image intoImageView:imageView onCompletion:completionBlock];
+                                                      } else {
+                                                          if (completionBlock) {
+                                                              completionBlock(nil);
+                                                          }
+                                                      }
+                                                      
                                                   } else {
                                                       MPLogDebug(@"Failed to download %@ on cache miss. Giving up for now.", imageURL);
+                                                      if (completionBlock) {
+                                                          completionBlock([NSError errorWithDomain:@"MoPub"
+                                                                                              code:1
+                                                                                          userInfo:@{NSLocalizedDescriptionKey:@"Failed to download %@ on cache miss. Giving up for now."}]);
+                                                      }
                                                   }
                                               } else {
                                                   MPLogInfo(@"MPNativeAd deallocated before loadImageForURL:intoImageView: download completion block was called");
+                                                  if (completionBlock) {
+                                                      completionBlock([NSError errorWithDomain:@"MoPub"
+                                                                                          code:1
+                                                                                      userInfo:@{NSLocalizedDescriptionKey:@"MPNativeAd deallocated before loadImageForURL:intoImageView: download completion block was called"}]);
+                                                  }
                                               }
                                           }];
+        } else {
+            
+            if (completionBlock) {
+                completionBlock([NSError errorWithDomain:@"MoPub"
+                                                    code:1
+                                                userInfo:@{NSLocalizedDescriptionKey:@"imageURL is nil"}]);
+            }
         }
     });
 }
@@ -338,15 +398,36 @@ static const CGFloat kMoPubImpressionTimerInterval = 0.25;
 
 - (void)safeMainQueueSetImage:(UIImage *)image intoImageView:(UIImageView *)imageView
 {
+    [self safeMainQueueSetImage:image intoImageView:imageView onCompletion:nil];
+}
+
+- (void)safeMainQueueSetImage:(UIImage *)image intoImageView:(UIImageView *)imageView onCompletion:(void (^)(NSError *error))completionBlock
+{
+    if (!image) {
+        if (completionBlock) {
+            completionBlock([NSError errorWithDomain:@"MoPub"
+                                                code:1
+                                            userInfo:@{NSLocalizedDescriptionKey:@"Cannot load image."}]);
+        }
+        return;
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         if (![self isCurrentAdForImageView:imageView]) {
             MPLogDebug(@"Cell was recycled. Don't bother setting the image.");
+            if (completionBlock) {
+                completionBlock([NSError errorWithDomain:@"MoPub"
+                                                    code:1
+                                                userInfo:@{NSLocalizedDescriptionKey:@"Cell was recycled. Don't bother setting the image."}]);
+            }
             return;
         }
 
         if (image) {
             imageView.image = image;
         }
+        
+        if (completionBlock) completionBlock(nil);
     });
 }
 

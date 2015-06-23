@@ -163,6 +163,7 @@
  * @param imageView An image view.
  */
 - (void)loadIconIntoImageView:(UIImageView *)imageView;
+- (void)loadIconIntoImageView:(UIImageView *)imageView onCompletion:(void (^)(NSError *error))completionBlock;
 
 /**
  * Asynchronously loads the ad object's main image into the provided image view.
@@ -170,6 +171,7 @@
  * @param imageView An image view.
  */
 - (void)loadImageIntoImageView:(UIImageView *)imageView;
+- (void)loadImageIntoImageView:(UIImageView *)imageView onCompletion:(void (^)(NSError *error))completionBlock;
 
 /**
  * Loads the ad object's title into the provided label.
