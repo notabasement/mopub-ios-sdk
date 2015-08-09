@@ -121,7 +121,9 @@ static NSString * const kResolverErrorDomain = @"com.mopub.resolver";
         if ([[UIApplication sharedApplication] canOpenURL:URL]) {
             actionInfo = [MPURLActionInfo infoWithURL:self.originalURL deeplinkURL:URL];
         } else {
-            *error = [NSError errorWithDomain:kResolverErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Cannot find any application to handle the given URL."}];
+            if (error) {
+                *error = [NSError errorWithDomain:kResolverErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Cannot find any application to handle the given URL."}];
+            }
         }
     }
 

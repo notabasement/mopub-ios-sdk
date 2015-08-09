@@ -213,19 +213,22 @@ static NSInteger const MPMaxRepeatingInterval = 1 << 16;
 
 #pragma mark - Error helpers
 
-- (void)safeAssignError:(NSError **)error code:(MPNativePositionResponseDeserializationErrorCode)code userInfo:(NSDictionary *)userInfo
+- (BOOL)safeAssignError:(NSError **)error code:(MPNativePositionResponseDeserializationErrorCode)code userInfo:(NSDictionary *)userInfo
 {
     if (error) {
         *error = [self deserializationErrorWithCode:code userInfo:userInfo];
+        return NO;
     }
+    
+    return YES;
 }
 
-- (void)safeAssignError:(NSError **)error code:(MPNativePositionResponseDeserializationErrorCode)code description:(NSString *)description
+- (BOOL)safeAssignError:(NSError **)error code:(MPNativePositionResponseDeserializationErrorCode)code description:(NSString *)description
 {
-    [self safeAssignError:error code:code description:description underlyingError:nil];
+    return [self safeAssignError:error code:code description:description underlyingError:nil];
 }
 
-- (void)safeAssignError:(NSError **)error code:(MPNativePositionResponseDeserializationErrorCode)code description:(NSString *)description underlyingError:(NSError *)underlyingError
+- (BOOL)safeAssignError:(NSError **)error code:(MPNativePositionResponseDeserializationErrorCode)code description:(NSString *)description underlyingError:(NSError *)underlyingError
 {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
 
@@ -237,7 +240,7 @@ static NSInteger const MPMaxRepeatingInterval = 1 << 16;
         [userInfo setObject:underlyingError forKey:NSUnderlyingErrorKey];
     }
 
-    [self safeAssignError:error code:code userInfo:userInfo];
+    return [self safeAssignError:error code:code userInfo:userInfo];
 }
 
 - (NSError *)deserializationErrorWithCode:(MPNativePositionResponseDeserializationErrorCode)code userInfo:(NSDictionary *)userInfo

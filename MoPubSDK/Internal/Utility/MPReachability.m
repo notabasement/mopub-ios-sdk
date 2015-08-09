@@ -78,9 +78,10 @@ typedef enum {
     if (reachability != NULL) {
         retVal= [[self alloc] init];
         if (retVal != NULL) {
-            retVal->reachabilityRef = reachability;
+            retVal->reachabilityRef = CFRetain(reachability);
             retVal->localWiFiRef = NO;
         }
+        CFRelease(reachability);
     }
     return retVal;
 }
