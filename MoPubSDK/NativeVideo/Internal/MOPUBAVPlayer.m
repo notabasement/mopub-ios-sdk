@@ -38,7 +38,7 @@ static NSString * const MPAVPlayerItemLoadErrorTemplate = @"Loading player item 
             // Reachability is used to detect network drop and reconnect.
             _reachability = [MPReachability reachabilityForInternetConnection];
             [_reachability startNotifier];
-            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkNetworkStatus:) name:kMPReachabilityChangedNotification object:nil];
         }
         return self;
     } else {

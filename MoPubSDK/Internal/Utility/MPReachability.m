@@ -56,7 +56,7 @@
 #import "MPLogging.h"
 
 
-NSString *kReachabilityChangedNotification = @"kNetworkReachabilityChangedNotification";
+NSString *kMPReachabilityChangedNotification = @"kNetworkMPReachabilityChangedNotification";
 
 
 #pragma mark - Supporting functions
@@ -96,7 +96,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
     MPReachability* reachabilityObject = (__bridge MPReachability *)info;
     // Post a notification to notify the client that the network reachability changed.
-    [[NSNotificationCenter defaultCenter] postNotificationName: kReachabilityChangedNotification object: reachabilityObject];
+    [[NSNotificationCenter defaultCenter] postNotificationName: kMPReachabilityChangedNotification object: reachabilityObject];
 }
 
 
