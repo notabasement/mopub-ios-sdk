@@ -32,7 +32,7 @@ static const CGFloat kAutoPlayTimerInterval = 0.25f;
 @property (nonatomic) UIView<MPNativeAdRendering> *adView;
 @property (nonatomic) MOPUBNativeVideoAdAdapter<MPNativeAdAdapter> *adapter;
 @property (nonatomic) BOOL adViewInViewHierarchy;
-@property (nonatomic) Class renderingViewClass;
+//@property (nonatomic) Class renderingViewClass;
 @property (nonatomic) MPNativeAdRendererImageHandler *rendererImageHandler;
 
 @property (nonatomic, weak) MOPUBPlayerViewController *videoController;
@@ -46,6 +46,8 @@ static const CGFloat kAutoPlayTimerInterval = 0.25f;
 @end
 
 @implementation MOPUBNativeVideoAdRenderer
+
+@synthesize renderingViewClass = _renderingViewClass;
 
 + (MPNativeAdRendererConfiguration *)rendererConfigurationWithRendererSettings:(id<MPNativeAdRendererSettings>)rendererSettings
 {
