@@ -71,7 +71,9 @@ static NSString *const kUnityAdsOptionZoneIdKey = @"zoneId";
 
 - (void)unityAdsVideoCompleted:(NSString *)rewardItemKey skipped:(BOOL)skipped
 {
-    if ([rewardItemKey length] > 0 && !skipped) {
+    // Reward item key has been deprecated
+//    if ([rewardItemKey length] > 0 && !skipped) {
+    if (!skipped) {
         [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:[[MPRewardedVideoReward alloc] initWithCurrencyType:rewardItemKey amount:@(kMPRewardedVideoRewardCurrencyAmountUnspecified)]];
     }
 }
