@@ -9,7 +9,7 @@
 @class MPNativeAdRendererConfiguration;
 @class MPStaticNativeAdRendererSettings;
 
-@interface MOPUBNativeVideoAdRenderer : NSObject
+@interface MOPUBNativeVideoAdRenderer : NSObject <MPNativeAdRenderer>
 
 @property (nonatomic, readonly) MPNativeViewSizeHandler viewSizeHandler;
 

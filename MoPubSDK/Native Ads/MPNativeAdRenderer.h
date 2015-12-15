@@ -63,6 +63,8 @@ typedef CGSize (^MPNativeViewSizeHandler)(CGFloat maximumWidth);
  */
 - (UIView *)retrieveViewWithAdapter:(id<MPNativeAdAdapter>)adapter error:(NSError **)error;
 
+@property (nonatomic) Class renderingViewClass;
+
 @optional
 
 /**

@@ -25,12 +25,14 @@
 @property (nonatomic) UIView<MPNativeAdRendering> *adView;
 @property (nonatomic) id<MPNativeAdAdapter> adapter;
 @property (nonatomic) BOOL adViewInViewHierarchy;
-@property (nonatomic) Class renderingViewClass;
+//@property (nonatomic) Class renderingViewClass;
 @property (nonatomic) MPNativeAdRendererImageHandler *rendererImageHandler;
 
 @end
 
 @implementation MPStaticNativeAdRenderer
+
+@synthesize renderingViewClass = _renderingViewClass;
 
 + (MPNativeAdRendererConfiguration *)rendererConfigurationWithRendererSettings:(id<MPNativeAdRendererSettings>)rendererSettings
 {
