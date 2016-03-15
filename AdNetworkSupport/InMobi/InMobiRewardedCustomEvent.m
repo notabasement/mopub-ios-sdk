@@ -22,15 +22,16 @@
 
 @end
 
-@implementation MPInstanceProvider (InMobiInterstitials)
-
-- (IMInterstitial *)buildIMInterstitialWithDelegate:(id)delegate placementId:(long long)placementId {
-    IMInterstitial *inMobiInterstitial = [[IMInterstitial alloc] initWithPlacementId:placementId];
-    inMobiInterstitial.delegate = delegate;
-    return inMobiInterstitial;
-}
-
-@end
+// Already implemented in InMobiInterstitialCustomEvent
+//@implementation MPInstanceProvider (InMobiInterstitials)
+//
+//- (IMInterstitial *)buildIMInterstitialWithDelegate:(id)delegate placementId:(long long)placementId {
+//    IMInterstitial *inMobiInterstitial = [[IMInterstitial alloc] initWithPlacementId:placementId];
+//    inMobiInterstitial.delegate = delegate;
+//    return inMobiInterstitial;
+//}
+//
+//@end
 
 
 @implementation InMobiRewardedCustomEvent
