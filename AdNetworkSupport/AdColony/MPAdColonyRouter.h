@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AdColony/AdColony.h>
+#import <SUAdColonyAdapter/AdColony.h>
 
 #import "MPRewardedVideoReward.h"
 

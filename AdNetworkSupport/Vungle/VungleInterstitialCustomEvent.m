@@ -5,7 +5,7 @@
 //  Copyright (c) 2013 MoPub. All rights reserved.
 //
 
-#import <VungleSDK/VungleSDK.h>
+#import <SUVungleAdapter/VungleSDK.h>
 #import "VungleInterstitialCustomEvent.h"
 #import "MPInstanceProvider.h"
 #import "MPLogging.h"

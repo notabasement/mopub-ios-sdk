@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UnityAds/UnityAds.h>
+#import "UnityAds.h"
 
 @protocol MPUnityRouterDelegate;
 @class UnityAdsInstanceMediationSettings;

@@ -5,7 +5,7 @@
 //  Copyright (c) 2013 MoPub. All rights reserved.
 //
 
-#import <AdColony/AdColony.h>
+#import <SUAdColonyAdapter/AdColony.h>
 #import "AdColonyInterstitialCustomEvent.h"
 #import "MPAdColonyRouter.h"
 #import "MPInstanceProvider+AdColony.h"

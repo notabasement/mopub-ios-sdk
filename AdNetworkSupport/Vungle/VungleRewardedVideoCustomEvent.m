@@ -7,7 +7,7 @@
 
 #import "VungleRewardedVideoCustomEvent.h"
 #import "MPLogging.h"
-#import <VungleSDK/VungleSDK.h>
+#import <SUVungleAdapter/VungleSDK.h>
 #import "MPRewardedVideoReward.h"
 #import "MPVungleRouter.h"
 #import "MPRewardedVideoError.h"

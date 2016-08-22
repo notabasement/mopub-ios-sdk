@@ -48,4 +48,6 @@
 
 - (void)trackMetricForURL:(NSURL *)URL;
 
+- (id<MPNativeAdRenderer>)renderer;
+
 @end

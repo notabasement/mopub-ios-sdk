@@ -5,7 +5,7 @@
 //  Copyright (c) 2015 MoPub. All rights reserved.
 //
 
-#import <AdColony/AdColony.h>
+#import <SUAdColonyAdapter/AdColony.h>
 
 #import "AdColonyRewardedVideoCustomEvent.h"
 #import "AdColonyInstanceMediationSettings.h"

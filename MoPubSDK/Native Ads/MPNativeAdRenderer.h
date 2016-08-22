@@ -103,4 +103,7 @@ typedef CGSize (^MPNativeViewSizeHandler)(CGFloat maximumWidth);
  */
 - (void)nativeAdTapped;
 
+- (Class)renderingViewClass;
+- (void)setRenderingViewClass:(Class)renderingViewClass;
+
 @end

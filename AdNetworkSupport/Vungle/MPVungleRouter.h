@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <VungleSDK/VungleSDK.h>
+#import <SUVungleAdapter/VungleSDK.h>
 
 @protocol MPVungleRouterDelegate;
 @class VungleInstanceMediationSettings;
