@@ -4,3 +4,6 @@
 [submodule "Specs/Externals/KIF"]
 	path = Specs/Externals/KIF
 	url = https://github.com/square/KIF.git
+[submodule "Forks/nimrich-Millennial"]
+	path = Forks/nimrich-Millennial
+	url = https://github.com/nimrich/mopub-ios-sdk
