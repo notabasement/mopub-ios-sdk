@@ -139,7 +139,7 @@
         "mopub-ios-sdk/MoPubSDK": [
 
         ],
-        "MillennialMediaSDK": [
+        "MMAdSDK": [
           ">= 6.3.0"
         ]
       }
