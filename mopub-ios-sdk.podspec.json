@@ -134,13 +134,13 @@
     },
     {
       "name": "Millennial",
-      "source_files": "AdNetworkSupport/Millennial/*.{h,m}",
+      "source_files": "Forks/nimrich-Millennial/AdNetworkSupport/Millennial/*.{h,m}",
       "dependencies": {
         "mopub-ios-sdk/MoPubSDK": [
 
         ],
         "MillennialMediaSDK": [
-          "~> 6.1"
+          ">= 6.3.0"
         ]
       }
     },
