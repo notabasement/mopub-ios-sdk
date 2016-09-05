@@ -18,7 +18,7 @@
   },
   "source": {
     "git": "https://github.com/notabasement/mopub-ios-sdk.git",
-    "tag": "release/4.9.0.1"
+    "branch": "release/4.9.0.1"
   },
   "frameworks": [
     "CoreGraphics",
@@ -63,12 +63,126 @@
         "mopub-ios-sdk/MoPubSDK": [
 
         ],
-        "Google-Mobile-Ads-SDK": [
-          "7.1.0"
+        "GoogleMobileAds": [
+          ">= 7.1.0"
         ]
       },
       "xcconfig": {
-        "FRAMEWORK_SEARCH_PATHS": "\"${PODS_ROOT}/Google-Mobile-Ads-SDK/GoogleMobileAdsSdkiOS-7.1.0\""
+        "FRAMEWORK_SEARCH_PATHS": "\"${PODS_ROOT}/GoogleMobileAds/**\""
+      }
+    },
+    {
+      "name": "AdColony",
+      "source_files": "AdNetworkSupport/AdColony/*.{h,m}",
+      "frameworks": [
+        "WebKit"
+      ],
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "SupersonicAdColonyAdapter": [
+
+        ]
+      }
+    },
+    {
+      "name": "Chartboost",
+      "source_files": "AdNetworkSupport/Chartboost/*.{h,m}",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "SupersonicChartboostAdapter": [
+
+        ]
+      }
+    },
+    {
+      "name": "Facebook",
+      "source_files": "AdNetworkSupport/Facebook/*.{h,m}",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "FBAudienceNetwork": [
+
+        ]
+      }
+    },
+    {
+      "name": "Greystripe",
+      "source_files": "AdNetworkSupport/Greystripe/*.{h,m}",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "GreystripeSDK": [
+
+        ]
+      }
+    },
+    {
+      "name": "InMobi",
+      "source_files": "AdNetworkSupport/InMobi/*.{h,m}",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "InMobiSDK": [
+          ">= 5.0.0"
+        ]
+      }
+    },
+    {
+      "name": "Millennial",
+      "source_files": "Forks/nimrich-Millennial/AdNetworkSupport/Millennial/*.{h,m}",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "MMAdSDK": [
+          ">= 6.3.0"
+        ]
+      }
+    },
+    {
+      "name": "Vungle",
+      "source_files": "AdNetworkSupport/Vungle/*.{h,m}",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "SupersonicVungleAdapter": [
+
+        ]
+      }
+    },
+    {
+      "name": "TapJoy",
+      "source_files": "AdNetworkSupport/TapJoy/*.{h,m}",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "TapjoySDK": [
+
+        ]
+      }
+    },
+    {
+      "name": "Unity",
+      "source_files": "AdNetworkSupport/Unity/*.{h,m}",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "UnityAds": [
+
+        ],
+        "SupersonicUnityAdsAdapter": [
+
+        ]
       }
     }
   ]
