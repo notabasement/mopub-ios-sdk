@@ -1,6 +1,7 @@
 {
   "name": "mopub-ios-sdk",
-  "version": "4.8.0.1",
+  "module_name": "MoPub",
+  "version": "4.9.0",
   "summary": "The Official MoPub Client SDK allows developers to easily monetize their apps by showing banner, interstitial, and native ads.",
   "description": "                    MoPub is a hosted ad serving solution built specifically for mobile publishers.\n                    Grow your mobile advertising business with powerful ad management, optimization \n                    and reporting capabilities, and earn revenue by connecting to the world's largest \n                    mobile ad exchange. \n\n                    To learn more or sign up for an account, go to http://www.mopub.com. \n",
   "homepage": "https://github.com/mopub/mopub-ios-sdk",
@@ -16,8 +17,8 @@
     "ios": "6.0"
   },
   "source": {
-    "git": "https://github.com/notabasement/mopub-ios-sdk.git",
-    "branch": "release/4.8.0.1"
+    "git": "https://github.com/mopub/mopub-ios-sdk.git",
+    "tag": "4.9.0"
   },
   "frameworks": [
     "CoreGraphics",
@@ -42,7 +43,8 @@
     {
       "name": "MoPubSDK",
       "source_files": "MoPubSDK/**/*.{h,m}",
-      "resources": "MoPubSDK/**/*.{png,bundle,xib,nib}"
+      "resources": "MoPubSDK/**/*.{png,bundle,xib,nib}",
+      "private_header_files":"MoPubSDK/Internal/Fabric/*.{h,m}"
     },
     {
       "name": "iAd",
@@ -61,126 +63,12 @@
         "mopub-ios-sdk/MoPubSDK": [
 
         ],
-        "GoogleMobileAds": [
-          ">= 7.1.0"
+        "Google-Mobile-Ads-SDK": [
+          "7.1.0"
         ]
       },
       "xcconfig": {
-        "FRAMEWORK_SEARCH_PATHS": "\"${PODS_ROOT}/GoogleMobileAds/**\""
-      }
-    },
-    {
-      "name": "AdColony",
-      "source_files": "AdNetworkSupport/AdColony/*.{h,m}",
-      "frameworks": [
-        "WebKit"
-      ],
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "SupersonicAdColonyAdapter": [
-
-        ]
-      }
-    },
-    {
-      "name": "Chartboost",
-      "source_files": "AdNetworkSupport/Chartboost/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "SupersonicChartboostAdapter": [
-
-        ]
-      }
-    },
-    {
-      "name": "Facebook",
-      "source_files": "AdNetworkSupport/Facebook/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "FBAudienceNetwork": [
-
-        ]
-      }
-    },
-    {
-      "name": "Greystripe",
-      "source_files": "AdNetworkSupport/Greystripe/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "GreystripeSDK": [
-
-        ]
-      }
-    },
-    {
-      "name": "InMobi",
-      "source_files": "AdNetworkSupport/InMobi/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "InMobiSDK": [
-          ">= 5.0.0"
-        ]
-      }
-    },
-    {
-      "name": "Millennial",
-      "source_files": "Forks/nimrich-Millennial/AdNetworkSupport/Millennial/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "MMAdSDK": [
-          ">= 6.3.0"
-        ]
-      }
-    },
-    {
-      "name": "Vungle",
-      "source_files": "AdNetworkSupport/Vungle/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "SupersonicVungleAdapter": [
-
-        ]
-      }
-    },
-    {
-      "name": "TapJoy",
-      "source_files": "AdNetworkSupport/TapJoy/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "TapjoySDK": [
-
-        ]
-      }
-    },
-    {
-      "name": "Unity",
-      "source_files": "AdNetworkSupport/Unity/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "UnityAds": [
-
-        ],
-        "SupersonicUnityAdsAdapter": [
-
-        ]
+        "FRAMEWORK_SEARCH_PATHS": "\"${PODS_ROOT}/Google-Mobile-Ads-SDK/GoogleMobileAdsSdkiOS-7.1.0\""
       }
     }
   ]
