@@ -46,18 +46,6 @@
       "resources": "MoPubSDK/**/*.{png,bundle,xib,nib,html}"
     },
     {
-      "name": "AdMobCustomEvents",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "Google-Mobile-Ads-SDK": [
-          "~> 7.19.0"
-        ]
-      },
-      "source_files": "AdNetworkSupport/GoogleAdMob/*.{h,m}"
-    },
-    {
       "name": "AdColonyCustomEvents",
       "dependencies": {
         "mopub-ios-sdk/MoPubSDK": [
@@ -68,6 +56,18 @@
         ]
       },
       "source_files": "AdNetworkSupport/AdColony/*.{h,m}"
+    },
+    {
+      "name": "AdMobCustomEvents",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "Google-Mobile-Ads-SDK": [
+          "~> 7.19.0"
+        ]
+      },
+      "source_files": "AdNetworkSupport/GoogleAdMob/*.{h,m}"
     },
     {
       "name": "ChartboostCustomEvents",
@@ -92,6 +92,45 @@
         ]
       },
       "source_files": "AdNetworkSupport/Facebook/*.{h,m}"
+    },
+    {
+      "name": "FlurryCustomEvents",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "Flurry-iOS-SDK/FlurrySDK": [
+          "~> 8.0"
+        ],
+        "Flurry-iOS-SDK/FlurryAds": [
+          "~> 8.0"
+        ]
+      },
+      "source_files": "AdNetworkSupport/Flurry/*.{h,m}"
+    },
+    {
+      "name": "TapjoyCustomEvents",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "TapjoySDK": [
+          "~> 11.0"
+        ]
+      },
+      "source_files": "AdNetworkSupport/Tapjoy/*.{h,m}"
+    },
+    {
+      "name": "VungleCustomEvents",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "VungleSDK-iOS": [
+          "~> 4.0"
+        ]
+      },
+      "source_files": "AdNetworkSupport/Vungle/*.{h,m}"
     },
     {
       "name": "Greystripe",
@@ -130,30 +169,6 @@
       }
     },
     {
-      "name": "VungleCustomEvents",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "VungleSDK-iOS": [
-          "~> 4.0"
-        ]
-      },
-      "source_files": "AdNetworkSupport/Vungle/*.{h,m}"
-    },
-    {
-      "name": "TapjoyCustomEvents",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "TapjoySDK": [
-          "~> 11.0"
-        ]
-      },
-      "source_files": "AdNetworkSupport/Tapjoy/*.{h,m}"
-    },
-    {
       "name": "Unity",
       "source_files": "AdNetworkSupport/Unity/*.{h,m}",
       "dependencies": {
@@ -164,21 +179,6 @@
 
         ]
       }
-    },
-    {
-      "name": "FlurryCustomEvents",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "Flurry-iOS-SDK/FlurrySDK": [
-          "~> 8.0"
-        ],
-        "Flurry-iOS-SDK/FlurryAds": [
-          "~> 8.0"
-        ]
-      },
-      "source_files": "AdNetworkSupport/Flurry/*.{h,m}"
     }
   ]
 }
