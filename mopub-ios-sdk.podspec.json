@@ -133,7 +133,7 @@
       "source_files": "AdNetworkSupport/Vungle/*.{h,m}"
     },
     {
-      "name": "Greystripe",
+      "name": "GreystripeCustomEvents",
       "source_files": "AdNetworkSupport/Greystripe/*.{h,m}",
       "dependencies": {
         "mopub-ios-sdk/MoPubSDK": [
@@ -145,7 +145,7 @@
       }
     },
     {
-      "name": "InMobi",
+      "name": "InMobiCustomEvents",
       "source_files": "AdNetworkSupport/InMobi/*.{h,m}",
       "dependencies": {
         "mopub-ios-sdk/MoPubSDK": [
@@ -157,7 +157,7 @@
       }
     },
     {
-      "name": "Millennial",
+      "name": "MillennialCustomEvents",
       "source_files": "Forks/nimrich-Millennial/AdNetworkSupport/Millennial/*.{h,m}",
       "dependencies": {
         "mopub-ios-sdk/MoPubSDK": [
@@ -169,7 +169,7 @@
       }
     },
     {
-      "name": "Unity",
+      "name": "UnityCustomEvents",
       "source_files": "AdNetworkSupport/Unity/*.{h,m}",
       "dependencies": {
         "mopub-ios-sdk/MoPubSDK": [
