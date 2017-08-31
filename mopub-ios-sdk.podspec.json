@@ -121,6 +121,18 @@
       "source_files": "AdNetworkSupport/Tapjoy/*.{h,m}"
     },
     {
+      "name": "UnityCustomEvents",
+      "source_files": "AdNetworkSupport/Unity/*.{h,m}",
+      "dependencies": {
+        "mopub-ios-sdk/MoPubSDK": [
+
+        ],
+        "SupersonicUnityAdsAdapter": [
+
+        ]
+      }
+    },
+    {
       "name": "VungleCustomEvents",
       "dependencies": {
         "mopub-ios-sdk/MoPubSDK": [
@@ -165,18 +177,6 @@
         ],
         "MMAdSDK": [
           ">= 6.3.0"
-        ]
-      }
-    },
-    {
-      "name": "UnityCustomEvents",
-      "source_files": "AdNetworkSupport/Unity/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/MoPubSDK": [
-
-        ],
-        "SupersonicUnityAdsAdapter": [
-
         ]
       }
     }
