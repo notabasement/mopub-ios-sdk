@@ -439,19 +439,6 @@ textEncodingName:(NSString *)encodingName
 - (BOOL)webView:(UIWebView *)webView
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
-    
-    NSString *urlString = request.URL.absoluteString;
-    if (urlString) {
-        
-        // We don't have to check for itms and itms-apps here since they will show alerts.
-        // Only universal links will redirect instantly without asking.
-        if ([urlString hasPrefix:@"https://itunes.apple.com"] ||
-            [urlString hasPrefix:@"http://itunes.apple.com"]) {
-            
-            return NO;
-        }
-    }
-    
     if ([self.delegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) {
         return [self.delegate webView:self
            shouldStartLoadWithRequest:request
