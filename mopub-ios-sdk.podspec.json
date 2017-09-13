@@ -1,7 +1,7 @@
 {
   "name": "mopub-ios-sdk",
   "module_name": "MoPub",
-  "version": "4.16.0",
+  "version": "4.16.1",
   "license": {
     "type": "New BSD",
     "file": "LICENSE"
@@ -19,7 +19,7 @@
   },
   "requires_arc": true,
   "platforms": {
-    "ios": "8.0"
+    "ios": "7.0"
   },
   "frameworks": [
     "CoreGraphics",
@@ -78,11 +78,9 @@
       "dependencies": {
         "mopub-ios-sdk/Core": [
 
-        ],
-        "MPUBMoatMobileAppKit": [
-          "3.2.1"
         ]
-      }
+      },
+      "vendored_frameworks": "MoPubSDK/Viewability/Moat/MPUBMoatMobileAppKit.framework"
     },
     {
       "name": "AdColonyCustomEvents",
@@ -181,7 +179,10 @@
           "~> 5.0"
         ]
       },
-      "source_files": "AdNetworkSupport/Vungle/*.{h,m}"
+      "source_files": "AdNetworkSupport/Vungle/*.{h,m}",
+      "platforms": {
+        "ios": "8.0"
+      }
     },
     {
       "name": "GreystripeCustomEvents",
