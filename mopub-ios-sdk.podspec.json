@@ -19,7 +19,7 @@
   },
   "requires_arc": true,
   "platforms": {
-    "ios": "7.0"
+    "ios": "8.0"
   },
   "frameworks": [
     "CoreGraphics",
@@ -80,7 +80,8 @@
 
         ]
       },
-      "vendored_frameworks": "MoPubSDK/Viewability/Moat/MPUBMoatMobileAppKit.framework"
+      "vendored_frameworks": "MoPubSDK/Viewability/Moat/MPUBMoatMobileAppKit.framework",
+      "source_files": "MoPubSDK/Viewability/MOAT/*.{h,m}"
     },
     {
       "name": "AdColonyCustomEvents",
