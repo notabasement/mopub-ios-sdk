@@ -1,7 +1,7 @@
 {
   "name": "mopub-ios-sdk",
   "module_name": "MoPub",
-  "version": "4.17.0",
+  "version": "4.18.0",
   "license": {
     "type": "New BSD",
     "file": "LICENSE"
@@ -114,7 +114,7 @@
 
         ],
         "ChartboostSDK": [
-          "~> 6.0"
+          "~> 7.0"
         ]
       },
       "source_files": "AdNetworkSupport/Chartboost/*.{h,m}"
@@ -145,6 +145,18 @@
         ]
       },
       "source_files": "AdNetworkSupport/Flurry/*.{h,m}"
+    },
+    {
+      "name": "MillennialCustomEvents",
+      "dependencies": {
+        "mopub-ios-sdk/Core": [
+
+        ],
+        "MMAdSDK": [
+          "~> 6.0"
+        ]
+      },
+      "source_files": "AdNetworkSupport/Millennial/*.{h,m}"
     },
     {
       "name": "TapjoyCustomEvents",
@@ -206,18 +218,6 @@
         ],
         "InMobiSDK": [
           ">= 5.0.0"
-        ]
-      }
-    },
-    {
-      "name": "MillennialCustomEvents",
-      "source_files": "Forks/nimrich-Millennial/AdNetworkSupport/Millennial/*.{h,m}",
-      "dependencies": {
-        "mopub-ios-sdk/Core": [
-
-        ],
-        "MMAdSDK": [
-          ">= 6.3.0"
         ]
       }
     }
